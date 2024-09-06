@@ -24,8 +24,8 @@ class AdsMongoClient:
 
     def get_categories(self) -> list:
         # write your code here
-        objects = self.categories_collection.find()
-        return list(set([object["category"] for object in objects]))
+        results = self.categories_collection.find()
+        return list(set([result["category"] for result in results]))
 
     def add_advertising(
         self, user_id: int, photo_url: str, category: str, description: str
@@ -48,7 +48,19 @@ class AdsMongoClient:
         self.ads_collection.delete_one(ad)
     def get_ads_by_user_id(self, user_id: int):
         # write your code here
-        pass
+        user_id = user_id
+        results = self.ads_collection(user_id)
+        empty_list = []
+
+        for result in results:
+            ad = {
+            "id": str(result["_id"]),
+            "photo_url": result["photo_url"],
+            "category": result["category"],
+            "description": result["description"],
+            }
+            empty_list.append(ad)
+        return empty_list
 
     def get_ads_by_category(self, category: str):
         # write your code here
