@@ -17,7 +17,10 @@ class AdsMongoClient:
 
     def add_category(self, category: str):
         # write your code here
-        pass
+        obj = {
+            "category"  :category
+        } 
+        self.categories_collection.insert_one(obj)
 
     def get_categories(self) -> list:
         # write your code here
