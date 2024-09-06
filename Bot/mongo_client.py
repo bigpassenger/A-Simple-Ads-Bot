@@ -49,7 +49,7 @@ class AdsMongoClient:
     def get_ads_by_user_id(self, user_id: int):
         # write your code here
         
-        results = self.ads_collection(user_id)
+        results = self.ads_collection.find({"user_id":user_id})
         empty_list = []
 
         for result in results:
@@ -64,7 +64,7 @@ class AdsMongoClient:
 
     def get_ads_by_category(self, category: str):
         # write your code here
-        results = self.ads_collection(category)
+        results = self.ads_collection.find({"category":category})
         empty_list = []
 
         for result in results:
