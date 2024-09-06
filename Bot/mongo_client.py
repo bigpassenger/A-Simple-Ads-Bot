@@ -24,7 +24,6 @@ class AdsMongoClient:
 
     def get_categories(self) -> list:
         # write your code here
-        empty_list = []
         objects = self.categories_collection.find()
         return list(set([object["category"] for object in objects]))
 
@@ -32,7 +31,13 @@ class AdsMongoClient:
         self, user_id: int, photo_url: str, category: str, description: str
     ):
         # write your code here
-        pass
+        ad = {
+            "user_id": user_id,
+            "description": description,
+            "category": category,
+            "photo_url": photo_url,
+        }
+        self.ads_collection.insert_one(ad)
 
     def delete_advertising(self, user_id: int, doc_id: str):
         # write your code here
