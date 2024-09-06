@@ -115,7 +115,7 @@ async def description_message_handler(
         reply_to_message_id= update.effective_message.id,
     )
 
-    ConversationHandler.END
+    return ConversationHandler.END
 async def cancel_command_handler(
     update: Update, context: ContextTypes.DEFAULT_TYPE
 ) -> int:
@@ -125,7 +125,7 @@ async def cancel_command_handler(
         text="عملیات ثبت آگهی لغو شد. برای ثبت آگهی جدید از دستور /add_category استفاده کنید.",
         reply_to_message_id= update.effective_message.id,
     )
-    ConversationHandler.END
+    return ConversationHandler.END
 
 
 if __name__ == "__main__":
