@@ -48,7 +48,7 @@ class AdsMongoClient:
         self.ads_collection.delete_one(ad)
     def get_ads_by_user_id(self, user_id: int):
         # write your code here
-        user_id = user_id
+        
         results = self.ads_collection(user_id)
         empty_list = []
 
@@ -64,7 +64,19 @@ class AdsMongoClient:
 
     def get_ads_by_category(self, category: str):
         # write your code here
-        pass
+        results = self.ads_collection(category)
+        empty_list = []
+
+        for result in results:
+            ad = {
+                "id": str(result["_id"]),
+                "photo_url": result["photo_url"],
+                "category": result["category"],
+                "description": result["description"],
+            }
+            empty_list.append(ad)
+
+        return empty_list
 
 
 if __name__ == "__main__":
