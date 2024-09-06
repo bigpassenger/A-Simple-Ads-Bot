@@ -41,8 +41,11 @@ class AdsMongoClient:
 
     def delete_advertising(self, user_id: int, doc_id: str):
         # write your code here
-        pass
-
+        ad = {
+            "_id":doc_id,
+            "user_id": user_id,
+        }
+        self.ads_collection.delete_one(ad)
     def get_ads_by_user_id(self, user_id: int):
         # write your code here
         pass
