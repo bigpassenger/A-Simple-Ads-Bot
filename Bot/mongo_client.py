@@ -24,7 +24,9 @@ class AdsMongoClient:
 
     def get_categories(self) -> list:
         # write your code here
-        pass
+        empty_list = []
+        objects = self.categories_collection.find()
+        return list(set([object["category"] for object in objects]))
 
     def add_advertising(
         self, user_id: int, photo_url: str, category: str, description: str
