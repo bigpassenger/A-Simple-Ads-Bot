@@ -85,6 +85,7 @@ async def choice_category_message_handler(
 async def photo_message_handler(
     update: Update, context: ContextTypes.DEFAULT_TYPE
 ) -> int:
+    
     """a function to add description and getting the photo's url for the ad's thumbnail"""
 
     context.user_data["photo_url"] = update.effective_message.photo[-1].file_id
@@ -97,9 +98,8 @@ async def photo_message_handler(
 
     return DESCRIPTION
 
-async def description_message_handler(
-    update: Update, context: ContextTypes.DEFAULT_TYPE
-) -> int:
+async def description_message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    
     """a function to get the user's description and adding the user's ad to the database"""
     context.user_data["description"] = update.effective_message.text
 
@@ -116,16 +116,17 @@ async def description_message_handler(
     )
 
     return ConversationHandler.END
-async def cancel_command_handler(
-    update: Update, context: ContextTypes.DEFAULT_TYPE
-) -> int:
+async def cancel_command_handler( update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    
     """a function to cancel the bot"""
+
     await context.bot.send_message(
         chat_id= update.effective_chat.id,
         text="عملیات ثبت آگهی لغو شد. برای ثبت آگهی جدید از دستور /add_category استفاده کنید.",
         reply_to_message_id= update.effective_message.id,
     )
     return ConversationHandler.END
+
 async def my_ads_command_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """a function to send all of the user's ads to the user"""
     ads = db_client.get_ads_by_user_id(update.effective_user.id)
